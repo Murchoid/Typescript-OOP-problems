@@ -7,7 +7,7 @@
 
     "dev1": "tsx watch src/learning-management-system.ts",
     "dev2": "tsx watch src/library-management-system.ts",
-     "e_commerce": "tsx watch src/e-commerce.ts"
+    "e_commerce": "tsx watch src/e-commerce.ts",
     "build": "tsc"
 
   },

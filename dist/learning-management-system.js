@@ -6,6 +6,7 @@ var typeOfWork;
     typeOfWork["ASSIGNMENT"] = "Assignment";
 })(typeOfWork || (typeOfWork = {}));
 class database {
+    data;
     constructor() {
         this.data = inMemoryDb;
     }
@@ -20,6 +21,10 @@ class database {
     }
 }
 class Person {
+    name;
+    role;
+    age;
+    gender;
     constructor(_name, _role, _age, _gender) {
         this.name = _name;
         this.role = _role;
@@ -28,6 +33,10 @@ class Person {
     }
 }
 class Course {
+    lectures;
+    assignments;
+    enrolledStudents;
+    classSchedule;
     constructor(_lectures, _assignmetns, _enrolledStudents, _classSchedule) {
         this.lectures = _lectures;
         this.assignments = _assignmetns;
@@ -42,6 +51,7 @@ class Course {
     }
 }
 class enrollment {
+    totalScore;
     constructor() { this.totalScore = 0; }
     calculateTotalScore(courseWork) {
         this.totalScore += courseWork.gradeAsmt();
@@ -69,6 +79,14 @@ class enrollment {
     }
 }
 class Student extends Person {
+    regNum;
+    course;
+    modules;
+    grade;
+    yearOfStudy;
+    db;
+    test;
+    enroll;
     constructor(_name, _role, _age, _gender, _regNum, _course, _modules, _grade, _yearOfStudy) {
         super(_name, _role, _age, _gender);
         this.regNum = _regNum;
@@ -107,6 +125,9 @@ class Student extends Person {
     }
 }
 class Professor extends Person {
+    IdNo;
+    lecture;
+    db;
     constructor(_name, _role, _age, _gender, _idNo, _lecture) {
         super(_name, _role, _age, _gender);
         this.IdNo = _idNo;
@@ -125,6 +146,9 @@ class Professor extends Person {
     }
 }
 class Admin extends Person {
+    idNo;
+    db;
+    enroll;
     constructor(_name, _role, _age, _gender, _idNo) {
         super(_name, _role, _age, _gender);
         this.idNo = _idNo;
@@ -158,6 +182,9 @@ class Admin extends Person {
     }
 }
 class Quiz {
+    typeOfAsmt;
+    maxScore;
+    yourScore;
     constructor(_typeOfAsmt, _maxScore, _yourscore) {
         this.typeOfAsmt = _typeOfAsmt;
         this.maxScore = _maxScore;
@@ -169,6 +196,9 @@ class Quiz {
     }
 }
 class Assignment {
+    typeOfAsmt;
+    maxScore;
+    yourScore;
     constructor(_typeOfAsmt, _maxScore, _yourscore) {
         this.typeOfAsmt = _typeOfAsmt;
         this.maxScore = _maxScore;
@@ -180,6 +210,9 @@ class Assignment {
     }
 }
 class Project {
+    typeOfAsmt;
+    maxScore;
+    yourScore;
     constructor(_typeOfAsmt, _maxScore, _yourscore) {
         this.typeOfAsmt = _typeOfAsmt;
         this.maxScore = _maxScore;

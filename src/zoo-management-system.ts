@@ -1,5 +1,5 @@
 interface TfeedingStrategy{
-    eatingMethod(): string;
+    eatingMethod(): void;
 }
 
 interface THabitat{
@@ -37,7 +37,7 @@ abstract class Animal implements TfeedingStrategy{
     }
 
     abstract makeMovement(): void;
-    abstract eatingMethod(): string;
+    abstract eatingMethod(): void;
     abstract makeSound(): void;
     abstract adjustHabitat(_habitat: THabitat): void;
     abstract takeVaccine(): void;
@@ -55,7 +55,7 @@ class Monitor{
     }
 
     performDuty(){
-        console.log("Performing duty!";)
+        console.log("Performing duty!");
     }
 }
 
@@ -69,20 +69,37 @@ class Bird extends Animal{
         this.typeOfBeak = _typeOfBeak;
     }
     
-    eatingMethod(): string {
+    eatingMethod(): void {
+        switch(this.diet){
+            case "Carnivore":
+                console.log(this.name + " eats meat");
+            break;
+            case "Herbivore":
+                console.log(this.name + " eats herbivore stuff");
+            break;
+            case "Omnivore":
+                console.log(this.name + " eats meat and herbivore stuff");
+            break;
+
+        }
         
     }
     makeMovement(): void {
-        
+        if(this.canFLy)
+            console.log(this.name + " flys around");
+        else
+            console.log(this.name + " probably walking with its useless wings!");
     }
     makeSound(): void {
-        
+        console.log(this.name + " chirps!");
     }
     adjustHabitat(_habitat: THabitat): void {
-        
+        this.habitat = _habitat;
+        console.log("Habitat for " + this.name + " has been adjusted to ");
+        console.log(this.habitat);
     }
     takeVaccine(): void {
-        
+        console.log(this.name + " takes vaccine!");
     }
 }
 
@@ -96,20 +113,36 @@ class Mammal extends Animal{
         this.hasTail = _hasTail;
     }
     
-    eatingMethod(): string {
-        
+    eatingMethod(): void {
+        switch(this.diet){
+            case "Carnivore":
+                console.log(this.name + " eats meat");
+            break;
+            case "Herbivore":
+                console.log(this.name + " eats herbivore stuff");
+            break;
+            case "Omnivore":
+                console.log(this.name + " eats meat and herbivore stuff");
+            break;
+
+        }
     }
     makeMovement(): void {
-        
+        if(this.hasTail)
+            console.log(this.name + " walks while wiggling its tail!")
+        else
+        console.log(this.name + " walks around!");
     }
     makeSound(): void {
-        
+        console.log(this.name + " makes sound");
     }
-    adjustHabitat(THabitat): void {
-        
+    adjustHabitat(_habitat: THabitat): void {
+        this.habitat = _habitat;
+        console.log("Habitat for " + this.name + " has been adjusted to ");
+        console.log(this.habitat);
     }
     takeVaccine(): void {
-        
+         console.log(this.name + " takes vaccine!");
     }
 }
 
@@ -121,20 +154,36 @@ class Reptile extends Animal{
         this.hasLegs = _hasLegs;
     }
     
-    eatingMethod(): string {
-        
+    eatingMethod(): void {
+        switch(this.diet){
+            case "Carnivore":
+                console.log(this.name + " eats meat");
+            break;
+            case "Herbivore":
+                console.log(this.name + " eats herbivore stuff");
+            break;
+            case "Omnivore":
+                console.log(this.name + " eats meat and herbivore stuff");
+            break;
+
+        }
     }
     makeMovement(): void {
-        
+        if(this.hasLegs)
+            console.log(this.name + " walks around");
+        else
+            console.log(this.name + " crawls around");
     }
     makeSound(): void {
-        
+        console.log(this.name + " makes sound");
     }
     adjustHabitat(_habitat: THabitat): void {
-        
+        this.habitat = _habitat;
+        console.log("Habitat for " + this.name + " has been adjusted to ");
+        console.log(this.habitat);
     }
     takeVaccine(): void {
-        
+         console.log(this.name + " takes vaccine!");
     }
 }
 
@@ -184,3 +233,34 @@ class Vet extends Monitor{
 
 }
 
+function zooStation(){
+    let zookeper1 = new Zookeeper("Mike", eRole.ZOOKEEPER, 20);
+    let vet1 = new Vet("Enockh", eRole.VET, 22);
+
+    let animal1 = new Bird("Eagle", "South America", eDietry.CARN, 10, 12, {temperature: 27,feedingSchedule:["Mon 10 and 4", "Tue 2 and 5"], cleanliness: 7 }, true,"Short curved");
+    let animal2 = new Mammal("Monkey", "South Africa", eDietry.OMN, 18, 25, {temperature: 25,feedingSchedule:["Mon 8 and 2", "Tue 8 and 5"], cleanliness: 7 },2,true);
+    let animal3 = new Reptile("Lizard", "South America", eDietry.CARN, 4, 0.5, {temperature: 29,feedingSchedule:["Mon 10 and 4", "Tue 2 and 5"], cleanliness: 5 }, true);
+
+
+    zookeper1.adoptAnimal(animal1);
+    zookeper1.adoptAnimal(animal2);
+    zookeper1.adoptAnimal(animal3);
+
+    zookeper1.feedAnimals();
+
+    console.log();
+
+    vet1.admitAnimal(animal1);
+    vet1.admitAnimal(animal2);
+    vet1.admitAnimal(animal3);
+
+    vet1.vaccinateAnimals();
+
+    console.log();
+    
+    animal1.makeSound();
+    animal2.makeSound();
+    animal3.makeSound();
+}
+
+zooStation();
